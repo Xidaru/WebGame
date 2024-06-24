@@ -1,26 +1,90 @@
-const socket = io('http://localhost:3000');
-const userList = document.getElementById('userList');
+$(document).ready(function() {
+  const socket = io('http://localhost:3000');
+  const $userList = $('#userList');
 
-
-function addUserToList(id) { // Добовляем клиента в список
-  const item = document.createElement('li');
-  const user = document.createElement('button');
-  if (socket.id == id) {
-    user.style.backgroundColor = 'red'
+  function onAskDuel(senderID) {
+    $(`<div><p>"${senderID}" requests a duel</p></div>`).dialog({
+      resizable: false,
+      modal: true,
+      buttons: {
+        "Accept": {
+          text: "Accept",
+          "class": "ui-dialog-button",
+          click: function() {
+            $(this).dialog('close');
+            acceptDuel(senderID);
+          }
+        },
+        "Decline": {
+          text: "Decline",
+          "class": "ui-dialog-button",
+          click: function() {
+            $(this).dialog('close');
+          }
+        }
+      }
+    });
   }
-  user.innerText = id;
 
-  item.appendChild(user);
-  userList.appendChild(item);
+  function onLobbySelect(id) {
+    $(`<div><p>Ask "${id}" for a duel</p></div>`).dialog({
+      resizable: false,
+      modal: true,
+      buttons: {
+        "Yes": {
+          text: "Yes",
+          "class": "ui-dialog-button",
+          click: function() {
+            $(this).dialog('close');
+            askJoin(id);
+          }
+        },
+        "Cancel": {
+          text: "Cancel",
+          "class": "ui-dialog-button",
+          click: function() {
+            $(this).dialog('close');
+          }
+        }
+      }
+    });
+  }
+
+  function askJoin(id) {
+    socket.emit('request duel', socket.id, id);
+  }
+
+  function acceptDuel(id) {
+    socket.emit('duel accepted', socket.id, id)
+  }
+  
+  function addUserToList(id) {
+    const $item = $('<li></li>');
+    const $user = $('<button></button>');
+    
+    if (socket.id === id) {
+        $user.css('backgroundColor', 'red');
+    } else {
+        $user.click(function() {
+            onLobbySelect(id);
+        });
+    }
+    
+    $user.text(id);
+    $item.append($user);
+    $userList.append($item);
 }
 
 function updateUserList(users) {
-  userList.innerHTML = ''; 
-  users.forEach(id => {
-    addUserToList(id);
-  });
+    $userList.empty(); 
+    users.forEach(id => {
+        addUserToList(id);
+    });
 }
-
-socket.on('update user list', (users) => { // Обновляем список когда сервер просит
-  updateUserList(users);
+  socket.on('ask duel', (senderID) => {
+    onAskDuel(senderID);
+  });
+  socket.on('update user list', (users) => {
+      updateUserList(users);
+  });
 });

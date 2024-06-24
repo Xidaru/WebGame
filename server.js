@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -22,9 +23,19 @@ io.on('connection', (socket) => {
   connectedClients.add(socket.id); // Нового клиента добовляем в таблицу с пользователями
   io.emit('update user list', Array.from(connectedClients)); // Просим каждого пользователя обновить их список
 
+  socket.on('request duel', (senderID, recieverID) => {
+    console.log(`"${senderID}" asks "${recieverID}" on a duel`)
+    io.to(recieverID).emit('ask duel', senderID);
+  });
+
+  socket.on('duel accepted', (senderID, recieverID) => {
+    console.log(`Duel was accepted`);
+  })
+
   socket.on('disconnect', () => {
     console.log(`"${socket.id}" leaves the server`);
     connectedClients.delete(socket.id); 
     io.emit('update user list', Array.from(connectedClients));
   });
 });
+

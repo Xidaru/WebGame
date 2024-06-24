@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'alagard';
+    src: url('../fonts/alagard.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Main';
+    src: url('../fonts/Pixeltype.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Main';
+}
+
+h1 {
+    font-family: 'alagard';
+    font-size: 50px;
+}
+
+p {
+    font-size: 30px;
+}
+
+button {
+    font-size: 30px;
+}
+
+.ui-dialog { /*Сюда картинку на фон для реквестов*/
+    border-width: 0 !important;
+    background-color: rgba(46, 46, 46, 0.83) !important;
+    align-items: center;
+
+}
+.ui-dialog p{
+    color: rgb(255, 255, 255) !important;
+}
+
+.ui-dialog-buttonpane {
+    border-width: 0 !important;
+    background-color: transparent !important;
+}
+
+.ui-dialog .ui-widget {
+    background-color: transparent;
+   
+}
+.ui-dialog-titlebar {
+    display: none;
+}
+
+.ui-dialog .ui-dialog-button {
+    all: unset !important;
+    color: rgb(255, 255, 255) !important;
+    font-family: 'Main';
+    padding-right: 20px !important;
+    font-size: 30px !important;
+  }

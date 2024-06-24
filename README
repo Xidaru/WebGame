@@ -2,5 +2,5 @@ Requirements:
     Node js: https://nodejs.org/dist/v22.3.0/node-v22.3.0-x64.msi
     v22.3.0
 
-Для запуска сервера в терминал вбей "node server"
+Для запуска сервера в терминал вбей "node server" или "npm start"
 html на 5500 порту, сервер на 3000

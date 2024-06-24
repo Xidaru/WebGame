@@ -1,8 +1,7 @@
+$(document).ready(function(){
 
-document.addEventListener("DOMContentLoaded", function() {
-    const guestBtn = document.getElementById("guest_menu");
+$("#guest_menu").click(function() {
+    window.location.href = "home.html";
+});
 
-    guestBtn.addEventListener("click", function() {
-        window.location.href = "home.html";
-    });
 });
