@@ -16,6 +16,132 @@
     font-family: 'Main';
 }
 
+body {
+    all: unset;
+    overflow: hidden;
+}
+
+.Title {
+    position: absolute;
+    bottom: 200px;
+    left: 150px;
+    image-rendering: pixelated;
+    z-index: 20;
+    width: 450px;
+    height: 220px;
+}
+.Title img{
+    width: 100%;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire area */
+    z-index: 1; 
+    image-rendering: pixelated;/* Places the image behind the content */
+    pointer-events: none;
+    
+}
+
+.background2 {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 0;
+}
+
+.background-slide {
+    display: inline-block;
+    width: 200%; /* Twice the width to create a seamless loop */
+    height: 100%;
+    animation: scroll 60s linear infinite;
+    image-rendering: pixelated;
+}
+
+.background-slide img {
+    width: 50%; /* Each image takes half of the container width */
+    height: 100%;
+    float: left;
+    object-fit: cover;
+}
+.background3 img{
+    pointer-events: none;
+}
+.background3 {
+    position: absolute;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: -1;
+}
+
+.background-slide2 {
+    display: inline-block;
+    width: 200%; /* Twice the width to create a seamless loop */
+    height: 100%;
+    animation: scroll 160s linear infinite;
+    image-rendering: pixelated;
+}
+
+.background-slide2 img {
+    width: 50%; /* Each image takes half of the container width */
+    height: 100%;
+    float: left;
+    object-fit: cover;
+}
+@keyframes scroll {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+.background-image3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire area */
+    z-index: -1; 
+    image-rendering: pixelated;/* Places the image behind the content */
+}
+
+.corner-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 150px;
+    right: 100px;
+    margin: 0;
+    font-size: 16px;
+    color: white;
+    z-index: 3;
+}
+
+.corner-content button{
+    padding: 40px;
+    padding-bottom: 20px;
+    font-size: 40px;
+    border: none;
+    background: none;
+    margin-bottom: 30px;
+    background-image: url(../Sprites/Button.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
 h1 {
     font-family: 'alagard';
     font-size: 50px;
