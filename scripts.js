@@ -5,3 +5,13 @@ $("#guest_menu").click(function() {
 });
 
 });
+var audio = new Audio('Audio/Dungeon Shadows.mp3');
+audio.loop = true; 
+function playMusic() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+

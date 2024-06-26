@@ -141,12 +141,31 @@ body {
     image-rendering: pixelated;
     cursor: pointer;
 }
+.BackGroundMusic audio{
+    display: none;
+}
+
+.BackGroundMusic button{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: transparent;
+    background-image: url(../Sprites/SoundIcon.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 30px;
+    border: none;
+    image-rendering: pixelated;
+    z-index: 5;
+    cursor: pointer;
+}
 
 h1 {
     font-family: 'alagard';
     font-size: 50px;
 }
 
+    
 p {
     font-size: 30px;
 }
