@@ -1,0 +1,214 @@
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+@keyframes takeDamage {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-1px) rotate(-1deg); }
+    50% { transform: translateX(1px) rotate(1deg); }
+    75% { transform: translateX(-1px) rotate(-1deg); }
+    100% { transform: translateX(0); }
+}
+
+.takeDamage {
+    animation: takeDamage 0.2s ease-out;
+    background-color: rgba(255, 0, 0, 0.189);
+    transition: background-color 0.05s;
+}
+.shake {
+    animation: shake 0.1s;
+}
+
+body {
+    all: unset;
+    overflow: hidden;
+    height: 100%;
+}
+
+div {
+    border: 1px dashed rgb(255, 0, 0);
+}
+
+#screen {
+    background-color: white;
+}
+#overlay {
+    display: flex;
+    justify-content: right;
+
+    margin: 10px;
+}
+
+#clientPart{
+    display: flex;
+    justify-content: end;
+    align-items: right;
+    padding-right: 100px;
+    gap: 50px;
+}
+
+#enemyPart {
+    display: flex;
+    align-content: flex-start;
+    padding-left: 100px;
+    gap: 50px;
+}
+
+#forfitButton{
+    height: 30px;
+    width: 100px;
+    border: 2px solid black;
+}
+#actionBar{
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex: 1;
+    border: 2px solid black;
+    
+}
+#actionBar div{
+    display: flex;
+    margin: 20px;
+}
+.unitSprite {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    border: 2px solid black;
+    transition: box-shadow 0.2s ease;
+}
+
+
+.unitSprite.ally.active {
+    background-color:rgb(255, 136, 0);
+    border: 2px solid rgb(0, 0, 0);
+    transition: box-shadow 0.2s ease;
+}
+
+.unitSprite.ally:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 5px rgb(255, 136, 0);
+}
+
+.status div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+}
+.enemy .status div{
+    height: 20px;
+    width: 20px;
+}
+.status div.positive {
+    border: 2px solid rgb(0, 160, 3); 
+}
+.status div.negative {
+    border: 2px solid rgb(192, 1, 1); 
+}
+.meterWindow{
+    display: flex;
+    justify-content: space-between;   
+    
+}
+.meter {
+    height: 40px;
+    width: 40px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill {
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+    transition: box-shadow 0.2s ease;
+}
+.skill.active {
+    background-color:rgb(0, 238, 255);
+    border: 2px solid rgb(0, 0, 0);
+    transition: box-shadow 0.2s ease;
+}
+.skill:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 5px rgb(0, 238, 255);
+}
+
+#readyButton {
+    height: 100px;
+    width: 200px;
+    border: 2px solid black;
+}
+#profilePicture {
+    height: 120px;
+    width: 120px;
+    border: 2px solid black;
+}
+
+.enemy {
+    height: 200px;
+    width: 140px;
+    margin-bottom: 20px;
+}
+.ally {
+    height: 350px;
+    width: 245px;
+}
+
+.selectable {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 5px rgb(17, 255, 0);
+    transition: box-shadow 0.2s ease;
+}
+
+.allySelector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40px;
+    border: 2px solid black;
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.targetedBymKnight {
+    box-shadow: 0px 0px 10px 5px rgb(162, 3, 3);
+    transition: box-shadow 0.2s ease;
+}
+.targetedBymMage {
+    box-shadow: 0px 0px 10px 5px rgb(0, 65, 195);
+    transition: box-shadow 0.2s ease;
+}
+.targetedBymArcher {
+    box-shadow: 0px 0px 10px 5px rgb(0, 139, 2);
+    transition: box-shadow 0.2s ease;
+}
+
+.targetedBymKnight.targetedBymMage {
+    box-shadow: 0px 0px 20px 10px rgb(255, 0, 195);
+    transition: box-shadow 0.2s ease;
+}
+.targetedBymKnight.targetedBymArcher {
+    box-shadow: 0px 0px 20px 10px rgb(213, 233, 0);
+    transition: box-shadow 0.2s ease;   
+}
+.targetedBymMage.targetedBymArcher {
+    box-shadow: 0px 0px 20px 10px rgb(0, 255, 213);
+    transition: box-shadow 0.2s ease;
+}
+
+.targetedBymKnight.targetedBymMage.targetedBymArcher {
+    box-shadow: 0px 0px 40px 20px rgb(255, 119, 0);
+    transition: box-shadow 0.2s ease;
+}

@@ -1,6 +1,25 @@
 $(document).ready(function() {
   const socket = io('http://localhost:3000');
   const $userList = $('#userList');
+  let my_room = 0;
+
+  $("#gameDialog").dialog({
+    autoOpen: false,
+    width: "auto",
+    height: "auto",
+    modal: true,
+    resizable: false,
+    draggable: false,
+    dialogClass: "full-screen-dialog",
+    open: function(event, ui) {
+      // Load the game content from an external HTML file
+      $("#gameDialog").load("game.html");
+    }
+  });
+
+  function gameInstance(){
+    $("#gameDialog").dialog("open");
+  }
 
   function onAskDuel(senderID) {
     $(`<div><p>"${senderID}" requests a duel</p></div>`).dialog({
@@ -85,6 +104,9 @@ function updateUserList(users) {
     onAskDuel(senderID);
   });
   socket.on('update user list', (users) => {
-      updateUserList(users);
+    updateUserList(users);
   });
+  socket.on('fight', () => {
+    gameInstance();
+  })
 });

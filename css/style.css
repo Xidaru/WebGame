@@ -11,6 +11,16 @@
     font-weight: normal;
     font-style: normal;
 }
+.ui-dialog.full-screen-dialog {
+        width: 100% !important;
+        height: 100% !important;
+        left: 0 !important;
+        top: 0 !important;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+}    
+
 
 * {
     font-family: 'Main';
