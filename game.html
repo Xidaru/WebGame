@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/game.css">
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous">
+    </script>
+    <script src="game.js"></script>
+</head>
+<body>
+    <div id="screen">
+        <div id="overlay">
+            <div id="forfitButton">Forfit</div>
+        </div>
+        <div id="enemyPart">
+            <div id="eKnight" class="unitSprite enemy">
+                <div class="status">
+                    <div class="negative poison" style="display: none;">0</div>
+                    <div class="negative weaken" style="display: none;">0</div>
+                    <div class="negative fragile" style="display: none;">0</div>
+                    <div class="negative pierce" style="display: none;">0</div>
+                    <div class="positive shield" style="display: none;">0</div>
+                    <div class="positive power" style="display: none;">0</div>
+                </div>
+                <div class="meterWindow">
+                    <div class="meter hp">100</div>
+                    <div class="meter rage">0</div>
+                </div> 
+            </div>
+            <div id="eMage" class="unitSprite enemy">
+                <div class="status">
+                    <div class="negative poison" style="display: none;">0</div>
+                    <div class="negative weaken" style="display: none;">0</div>
+                    <div class="negative fragile" style="display: none;">0</div>
+                    <div class="negative pierce" style="display: none;">0</div>
+                    <div class="positive shield" style="display: none;">0</div>
+                    <div class="positive power" style="display: none;">0</div>
+                </div>
+                <div class="meterWindow">
+                    <div class="meter hp">60</div>
+                    <div class="meter mana">100</div>
+                </div>  
+            </div>
+            <div id="eArcher" class="unitSprite enemy">
+                <div class="status">
+                    <div class="negative poison" style="display: none;">0</div>
+                    <div class="negative weaken" style="display: none;">0</div>
+                    <div class="negative fragile" style="display: none;">0</div>
+                    <div class="negative pierce" style="display: none;">0</div>
+                    <div class="positive shield" style="display: none;">0</div>
+                    <div class="positive power" style="display: none;">0</div>
+                </div>
+                <div class="meterWindow">
+                    <div class="meter hp">70</div>
+                    <div class="meter concentration">0</div>
+                </div>  
+            </div>
+        </div>
+        <div id="clientPart">
+
+            <div class="allyContainer knight">
+                <div id="mKnight" class="allySelector">Berserker</div>
+                <div class="unitSprite ally">
+                    <div class="status">
+                        <div class="negative poison" style="display: none;">0</div>
+                        <div class="negative weaken" style="display: none;">0</div>
+                        <div class="negative fragile" style="display: none;">0</div>
+                        <div class="negative pierce" style="display: none;">0</div>
+                        <div class="positive shield" style="display: none;">0</div>
+                        <div class="positive power" style="display: none;">0</div>
+                    </div>
+                    <div class="meterWindow">
+                        <div class="meter hp">100</div>
+                        <div class="meter rage">0</div>
+                    </div> 
+                </div>
+                
+            </div>
+
+            <div class="allyContainer mage">
+                <div id="mMage" class="allySelector">Mage</div>
+                <div class="unitSprite ally">
+                    <div class="status">
+                        <div class="negative poison" style="display: none;">0</div>
+                        <div class="negative weaken" style="display: none;">0</div>
+                        <div class="negative fragile" style="display: none;">0</div>
+                        <div class="negative pierce" style="display: none;">0</div>
+                        <div class="positive shield" style="display: none;">0</div>
+                        <div class="positive power" style="display: none;">0</div>
+                    </div>
+                    <div class="meterWindow">
+                        <div class="meter hp">60</div>
+                        <div class="meter mana">100</div>
+                    </div>  
+                </div>
+                
+            </div>
+
+            <div class="allyContainer archer">
+                <div id="mArcher" class="allySelector">Archer</div>
+                <div class="unitSprite ally">
+                    <div class="status">
+                        <div class="negative poison" style="display: none;">0</div>
+                        <div class="negative weaken" style="display: none;">0</div>
+                        <div class="negative fragile" style="display: none;">0</div>
+                        <div class="negative pierce" style="display: none;">0</div>
+                        <div class="positive shield" style="display: none;">0</div>
+                        <div class="positive power" style="display: none;">0</div>
+                    </div>
+                    <div class="meterWindow">
+                        <div class="meter hp">70</div>
+                        <div class="meter concentration">0</div>
+                    </div>  
+                </div>
+                
+            </div>
+        </div>
+        <div id="actionBar">
+            <div id="profile">
+                <div id="profilePicture">Unit pfp</div>
+            </div>
+            <div id="defoultSkills">
+                <div id="skillAtk" class="skill">Atk skill</div>
+                <div id="skillDef" class="skill">Def skill</div>
+            </div>
+            <div id="bonusSkills">
+                <div id="skill1" class="skill">skill 1</div>
+                <div id="skill2" class="skill">skill 2</div>
+                <div id="skill3" class="skill">skill 3</div>
+            </div>
+            <div id="readyWindow">
+                <div id="readyButton">Ready</div>
+            </div>
+            <div>
+                <button id="test">Damage</button>
+            </div>
+        </div>
+    </div>
+    <audio id="clickDenied-sound" src="audio/220210__gameaudio__bonk-click-wdeny-feel.wav" preload="auto"></audio>
+    <audio id="click-sound" src="audio/448081__breviceps__tic-toc-click.wav" preload="auto"></audio>
+</body>
+</html>
