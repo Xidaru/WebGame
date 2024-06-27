@@ -33,6 +33,7 @@ $(document).ready(function() {
         applyStatus('mMage', 'shield', 10);
         applyStatus('mMage', 'poison', 15);
         applyStatus('eKnight', 'pierce', 20)
+        damage("mMage", 15)
     });
 
     let moves = {

@@ -15,16 +15,26 @@
         crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js" integrity="sha256-J8ay84czFazJ9wcTuSDLpPmwpMXOm573OUtZHPQqpEU=" crossorigin="anonymous"></script>
+    <script src="scripts2.js"></script>
     <script type="module" src="client.js"></script>
     <script src="game.js"></script>
 </head>
-<body>
-    <h1>LOBBY</h1>
-    <p>User list:</p>
-    <ul id="userList"></ul>
-    
+
+<body id="lobby">
     <div id="gameDialog" title="Game" style="display: none;"></div>
     <audio id="clickDenied-sound" src="audio/220210__gameaudio__bonk-click-wdeny-feel.wav" preload="auto"></audio>
     <audio id="click-sound" src="audio/448081__breviceps__tic-toc-click.wav" preload="auto"></audio>
+    <div class="BackGroundMusic">
+        <button onclick="playLobbyMusic()"></button>
+    </div>
+    <div class="BackLobby">
+        <img src="Sprites/Lobby.png" alt="Lobby">
+    </div>
+    <div class="LobbyContent">
+        <h1>LOBBY</h1>
+        <p>User list:</p>
+        <ul id="userList"></ul>
+    </div>
+
 </body>
 </html>

@@ -25,6 +25,8 @@ $(document).ready(function() {
     $(`<div><p>"${senderID}" requests a duel</p></div>`).dialog({
       resizable: false,
       modal: true,
+      width: "auto",
+      height: "auto",
       buttons: {
         "Accept": {
           text: "Accept",
@@ -49,6 +51,8 @@ $(document).ready(function() {
     $(`<div><p>Ask "${id}" for a duel</p></div>`).dialog({
       resizable: false,
       modal: true,
+      width: "auto",
+      height: "auto",
       buttons: {
         "Yes": {
           text: "Yes",

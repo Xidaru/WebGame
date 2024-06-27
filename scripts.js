@@ -7,6 +7,8 @@ $("#guest_menu").click(function() {
 });
 var audio = new Audio('Audio/Dungeon Shadows.mp3');
 audio.loop = true; 
+audio.autoplay = true;
+audio.volume = 0.5;
 function playMusic() {
     if (audio.paused) {
         audio.play();
@@ -14,4 +16,3 @@ function playMusic() {
         audio.pause();
     }
 }
-

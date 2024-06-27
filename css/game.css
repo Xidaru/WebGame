@@ -81,7 +81,90 @@ div {
     transition: box-shadow 0.2s ease;
 }
 
+#eKnight{
+    background-image: url('../Sprites/Berserk_front.png ');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    
+}
 
+#eMage{
+    background-image: url('../Sprites/Magefront.png ');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    
+}
+
+#eArcher{
+    background-image: url('../Sprites/Archer\ front.png ');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    
+}
+
+.allyContainer.knight{
+    background-image: url('../Sprites/VoinSzadi.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    
+}
+
+.allyContainer.mage{
+    background-image: url('../Sprites/Mag szadi.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    
+}
+
+.allyContainer.archer{
+    background-image: url('../Sprites/Archer.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    
+}
+
+.poison{
+    background-image: url('../Sprites/PoisonEffect.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+.weaken{
+    background-image: url('../Sprites/powerDown.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+.fragile{
+    background-image: url('../Sprites/Fragile.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+.pierce{
+    background-image: url('../Sprites/pierce.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+.shield{
+    background-image: url('../Sprites/ShieldEffect.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+.power{
+    background-image: url('../Sprites/PowerUp.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
 .unitSprite.ally.active {
     background-color:rgb(255, 136, 0);
     border: 2px solid rgb(0, 0, 0);
