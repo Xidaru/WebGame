@@ -1,7 +1,13 @@
+// client.js
 $(document).ready(function() {
   const socket = io('http://localhost:3000');
   const $userList = $('#userList');
   let my_room = 0;
+
+  window.getStateToServer = function(gameState) {
+    console.log(gameState);
+    socket.emit('getstate', gameState);
+  };
 
   $("#gameDialog").dialog({
     autoOpen: false,
@@ -12,7 +18,6 @@ $(document).ready(function() {
     draggable: false,
     dialogClass: "full-screen-dialog",
     open: function(event, ui) {
-      // Load the game content from an external HTML file
       $("#gameDialog").load("game.html");
     }
   });
@@ -112,5 +117,8 @@ function updateUserList(users) {
   });
   socket.on('fight', () => {
     gameInstance();
-  })
+  });
+  socket.on('recieve actions', (moves) => {
+    playOut(moves);
+  });
 });

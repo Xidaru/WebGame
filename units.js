@@ -1,28 +1,26 @@
 class Unit {
-    constructor(hp,name) {
+    constructor(hp,name,poisonOnMe,weakenOnMe,fragileOnMe,pierceOnMe,shieldOnMe,dmgBoostOnMe) {
         this.name = name;
         this.hp = hp;
         //Статус эфекты
-        this.poisonOnMe = 0; // Урон каждый ход
+        this.poisonOnMe = poisonOnMe; // Урон каждый ход
         
-        this.weakenOnMe = 0; // Мой урон * 0.5
-        this.fragileOnMe = 0; // Урон по мне * 1.5
+        this.weakenOnMe = weakenOnMe; // Мой урон * 0.5
+        this.fragileOnMe = fragileOnMe; // Урон по мне * 1.5
         
-        this.pierceOnMe = 0; // Урон проходящий по мне игнорирует щиты 
-        this.shieldOnMe = 0; // Поглящает на себя урон
-        this.dmgBoostOnMe = 0; // Мой урон * 1.5
+        this.pierceOnMe = pierceOnMe; // Урон проходящий по мне игнорирует щиты 
+        this.shieldOnMe = shieldOnMe; // Поглящает на себя урон
+        this.dmgBoostOnMe = dmgBoostOnMe; // Мой урон * 1.5
     };
-
     selfHeal(heal) {
         this.hp = this.hp + heal;
+        
     };
-
     selfDamage(dmg) {
         const incomingDmg = (dmg * (1.5*this.fragileOnMe) - (this.shieldOnMe*(1-this.pierceOnMe)));
         this.shieldOnMe = this.shieldOnMe - incomingDmg;
         this.hp = this.hp - incomingDmg;
     };
-
     enemyDamage(dmg) {
         return dmg * (0.5*this.weakenOnMe + 1.5*this.dmgBoostOnMe)
     }

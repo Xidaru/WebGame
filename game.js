@@ -1,17 +1,155 @@
+// game.js
 $(document).ready(function() {
     let isAllySelected = false;
     let isSkillSelected = false;
+    let isGameOnPause = false;
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    window.playOut = function(moves) {
+        for(action of moves) {
+            if (action[1] == 'damage'){
+                damage(action[2],action[3])
+                delay(2000);
+            } else {
+                applyStatus(action[2],action[3],action[4])
+                delay(2000);
+            }
+        }
+            moves = {
+                'knight' : {
+                    'skill': null,
+                    'target': null
+                },
+                'mage': {
+                    'skill': null,
+                    'target': null
+                },
+                'archer': {
+                    'skill' : null,
+                    'target': null,
+                }
+              };
+
+              $('.disabled').removeClass('disabled');
+              $('.targetedBymKnight').removeClass('targetedBymKnight');
+              $('.targetedBymMage').removeClass('targetedBymMage');
+              $('.targetedBymArcher').removeClass('targetedBymArcher');
+              isGameOnPause = false;
+              clearTargets();
+        
+    }
+
+    function sendState() {
+        let knightState = {
+            'HP'    : $('.knight').find('.hp').text(),
+            'RAGE'  : $('.knight').find('.rage').text(),
+
+            'POSION': $('.knight').find('.poison').text(),
+            'WEAKEN': $('.knight').find('.weaken').text(),
+            'FRAGILE': $('.knight').find('.fragile').text(),
+            'PIERCE': $('.knight').find('.pierce').text(),
+            'SHIELD': $('.knight').find('.shield').text(),
+            'POWER' : $('.knight').find('.power').text()    
+        }
+        let mageState = {
+            'HP'    : $('.mage').find('.hp').text(),
+            'MANA'  : $('.mage').find('.mana').text(),
+
+            'POSION': $('.mage').find('.poison').text(),
+            'WEAKEN': $('.mage').find('.weaken').text(),
+            'FRAGILE': $('.mage').find('.fragile').text(),
+            'PIERCE': $('.mage').find('.pierce').text(),
+            'SHIELD': $('.mage').find('.shield').text(),
+            'POWER' : $('.mage').find('.power').text()    
+        }
+        let archerState = {
+            'HP'    : $('.archer').find('.hp').text(),
+            'CONCENTRATION'  : $('.archer').find('.concentration').text(),
+
+            'POSION': $('.archer').find('.poison').text(),
+            'WEAKEN': $('.archer').find('.weaken').text(),
+            'FRAGILE': $('.archer').find('.fragile').text(),
+            'PIERCE': $('.archer').find('.pierce').text(),
+            'SHIELD': $('.archer').find('.shield').text(),
+            'POWER' : $('.archer').find('.power').text()    
+        }
+
+        let enemyKnightState = {
+            'HP'    : $('#eKnight').find('.hp').text(),
+            'RAGE'  : $('#eKnight').find('.rage').text(),
+
+            'POSION': $('#eKnight').find('.poison').text(),
+            'WEAKEN': $('#eKnight').find('.weaken').text(),
+            'FRAGILE': $('#eKnight').find('.fragile').text(),
+            'PIERCE': $('#eKnight').find('.pierce').text(),
+            'SHIELD': $('#eKnight').find('.shield').text(),
+            'POWER' : $('#eKnight').find('.power').text()    
+        }
+
+        let enemyMageState = {
+            'HP'    : $('#eMage').find('.hp').text(),
+            'MANA'  : $('#eMage').find('.mana').text(),
+
+            'POSION': $('#eMage').find('.poison').text(),
+            'WEAKEN': $('#eMage').find('.weaken').text(),
+            'FRAGILE': $('#eMage').find('.fragile').text(),
+            'PIERCE': $('#eMage').find('.pierce').text(),
+            'SHIELD': $('#eMage').find('.shield').text(),
+            'POWER' : $('#eMage').find('.power').text()    
+        }
+
+        let enemyArcherState = {
+            'HP'    : $('#eArcher').find('.hp').text(),
+            'CONCENTRATION'  : $('#eArcher').find('.concentration').text(),
+
+            'POSION': $('#eArcher').find('.poison').text(),
+            'WEAKEN': $('#eArcher').find('.weaken').text(),
+            'FRAGILE': $('#eArcher').find('.fragile').text(),
+            'PIERCE': $('#eArcher').find('.pierce').text(),
+            'SHIELD': $('#eArcher').find('.shield').text(),
+            'POWER' : $('#eArcher').find('.power').text()    
+        }
+
+        let send = { // Статус всей игры
+            'knightState'   : knightState,
+            'mageState'     : mageState,
+            'archerState'   : archerState,
+
+            'enemyKnightState': enemyKnightState,
+            'enemyMageState'  : enemyMageState,
+            'enemyArcherState': enemyArcherState,
+
+            'moves'         : moves
+        }
+        $('.unitSprite.ally').addClass('disabled');
+        isGameOnPause = true;
+        return send;
+    }
+
+    $('#readyButton').on('click', function() {
+        getStateToServer(sendState());
+    })
 
     function damage(unitId, amount) {  
+        let element;
         if (unitId.startsWith('m')) {
+            element = $('#' + unitId).siblings('.unitSprite').find('.meter.hp');
             damageElement($('#' + unitId).parent());
-            let currentHP = parseInt($('#' + unitId).siblings('.unitSprite').find('.meter.hp').text());
-            $('#' + unitId).siblings('.unitSprite').find('.meter.hp').text(currentHP - amount);
         } else {
+            element = $('#' + unitId).find('.meter.hp');
             damageElement($('#' + unitId));
-            let currentHP = parseInt($('#' + unitId).find('.meter.hp').text());
-            $('#' + unitId).find('.meter.hp').text(currentHP - amount);
         }
+        let currentHP = parseInt(element.text());
+        if (currentHP - amount > 0) {
+            element.text(currentHP - amount);
+        } else {
+            element.text(0)
+            $('#' + unitId).addClass('dead')
+        }
+
     }
 
     function applyStatus(unitId, effect, amount) {
@@ -22,18 +160,22 @@ $(document).ready(function() {
             element = $('#' + unitId).find(`.status .${effect}`);
         }
         let currentAmount = parseInt(element.text());
-        element.text(currentAmount + amount);
-        shakeElement(element);
-        if (currentAmount+amount > 0) element.css('display', '');
+        if (currentAmount+amount > 0) {
+            element.css('display', '');
+            element.text(currentAmount + amount);
+            shakeElement(element);
+        } else {
+            element.text(0);
+            element.css('display', 'none');
+        }
+        
     }
     
     
     $('#test').on('click', function() {
-        applyStatus('eMage', 'poison', 15);
         applyStatus('mMage', 'shield', 10);
         applyStatus('mMage', 'poison', 15);
         applyStatus('eKnight', 'pierce', 20)
-        damage("mMage", 15)
     });
 
     let moves = {
@@ -96,6 +238,9 @@ $(document).ready(function() {
     }
 
     $('.unitSprite.ally').on('click', function() {
+        if ($(this).parent().find('.allySelector').hasClass('dead') || isGameOnPause) {
+            playClickDenied();
+        } else {
         isAllySelected = true;
         const selectedUnit = $(this).siblings('.allySelector').attr('id');
         $('.unitSprite.ally').removeClass('active');
@@ -137,6 +282,9 @@ $(document).ready(function() {
                 }
 
                 $('.selectable').on('click', function() {
+                    if ($(this).hasClass('dead')) {
+                        playClickDenied();
+                    } else {
                     if (isSkillSelected) {
                         let selectedTarget = $(this).attr('id');
                         console.log(selectedUnit,selectedSkill,selectedTarget);
@@ -158,13 +306,15 @@ $(document).ready(function() {
                         isSkillSelected = false;
                         isAllySelected = false;
                     }
+                    }
                 })
                 
             } else {
                 playClickDenied()
+                
             };
             
         });
 
-    });
+    }});
 });
