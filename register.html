@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1 class="Reg">Registration</h1>
+    <form id="registrationForm">
+        <input type="email" id="email" name="email" required placeholder="Email">
+        <input type="text" id="nickname" name="nickname" required placeholder="Nickname">
+        <input type="password" id="password" name="password" required placeholder="Password">
+        <button id="registerButton" type="button">Register</button>
+    </form>
+    <script>
+        document.getElementById('registerButton').addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const nickname = document.getElementById('nickname').value;
+            const password = document.getElementById('password').value;
+
+            fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `email=${encodeURIComponent(email)}&nickname=${encodeURIComponent(nickname)}&password=${encodeURIComponent(password)}`
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
